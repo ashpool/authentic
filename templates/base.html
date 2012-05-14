@@ -1,8 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <link rel="stylesheet" href="style.css" />
         <title>{% block title %}My amazing site{% endblock %}</title>
+        <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+        <style>
+            body {
+                font-family: verdana;
+                font-size: 12px;
+            }
+
+            th {
+                font-weight: normal;
+            }
+
+        </style>
+        <script>
+
+            $(document).ready(function() {
+                $('input[type="text"]').addClass("idleField");
+
+                $('input[type="text"]').focus(function() {
+                    $(this).removeClass("idleField").addClass("focusField");
+                    this.select();
+                });
+
+
+                $('input[type="text"]').blur(function() {
+                    $(this).removeClass("focusField").addClass("idleField");
+                });
+
+                $('input[type="text"]').focus();
+
+            });
+        </script>
+
     </head>
 
     <body>
