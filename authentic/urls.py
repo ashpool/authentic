@@ -10,6 +10,7 @@ urlpatterns = patterns('',
     (r'^accounts/login/$', 'django.contrib.auth.views.login', {'template_name': 'login.html'}),
     (r'^logout/$', 'main.views.logout'),
     (r'^loggedout/$', 'main.views.loggedout'),
+    (r'^register/$', 'main.views.register'),
     # url(r'^authentic/', include('authentic.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
