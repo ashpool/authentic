@@ -1,8 +1,12 @@
 # Create your views here.
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from django.core.context_processors import csrf
+from django.forms.models import modelformset_factory
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response
+from main.forms import UserForm, ContactForm
 from main.models import UserLogin
 
 @login_required(login_url='/accounts/login/')
@@ -26,7 +30,19 @@ def loggedout(request):
     return HttpResponse("Hello, world. You're out!")
 
 def register(request):
-    return HttpResponse("Register")
 
-    #form = RegisterForm()
-    #return render_to_response('register.html')
+    form = UserForm()
+    c = {'form': form}
+    c.update(csrf(request))
+    return render_to_response('register.html', c)
+
+def create_user(request):
+    form = UserForm(request.POST)
+    if form.is_valid():
+        user = form.instance
+        user.set_password(user.password)
+        user.save()
+
+        return render_to_response('index.html')
+    else:
+       return HttpResponse("Invalid")

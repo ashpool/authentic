@@ -11,6 +11,7 @@ urlpatterns = patterns('',
     (r'^logout/$', 'main.views.logout'),
     (r'^loggedout/$', 'main.views.loggedout'),
     (r'^register/$', 'main.views.register'),
+    (r'^register/create_user/$', 'main.views.create_user'),
     # url(r'^authentic/', include('authentic.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
