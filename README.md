@@ -20,7 +20,7 @@ This should be sufficient for most users: it's quite secure, requiring massive a
 computing time to break.
 
 Django stores a secret key in settings.py
-> # Make this unique, and don't share it with anybody.
+> Make this unique, and don't share it with anybody.
 > SECRET_KEY = 'r-7tm7riwgt9!g-z95@$%rntmli#72lh@y+1@nwu)g)q+f9#p&amp;'
 
 ### PBKDF2 (Password-Based Key Derivation Function)
@@ -63,12 +63,58 @@ Even a small change in the message will (with overwhelming probability) result i
 
 
 ## Secure Sessions
+https://docs.djangoproject.com/en/dev/topics/auth/#how-django-stores-passwords
 
-> django.contrib.sessions.middleware.SessionMiddleware
-> django.middleware.csrf.CsrfViewMiddleware
-> django.contrib.auth.middleware.AuthenticationMiddleware
+Django hooks its authentication framework into the request objects.
 
 >  if request.user.is_authenticated():
 >      # Do something for authenticated users.
 >  else:
 >      # Do something for anonymous users.
+
+Django provides two functions in django.contrib.auth: authenticate() and login().
+
+### authenticate()
+To authenticate a given username and password, use authenticate(). It takes two keyword arguments, username and password, and it returns a User object if the password is valid for the given username. If the password is invalid, authenticate() returns None. Example:
+
+> from django.contrib.auth import authenticate
+> user = authenticate(username='john', password='secret')
+> if user is not None:
+>     if user.is_active:
+>         print("You provided a correct username and password!")
+>     else:
+>         print("Your account has been disabled!")
+> else:
+>     print("Your username and password were incorrect.")
+
+### login()
+To log a user in, in a view, use login(). It takes an HttpRequest object and a User object. login() saves the user's ID in the session, using Django's session framework, so, as mentioned above, you'll need to make sure to have the session middleware installed.
+
+Note that data set during the anonymous session is retained when the user logs in.
+
+This example shows how you might use both authenticate() and login():
+
+from django.contrib.auth import authenticate, login
+
+> def my_view(request):
+>     username = request.POST['username']
+>     password = request.POST['password']
+>     user = authenticate(username=username, password=password)
+>     if user is not None:
+>         if user.is_active:
+>             login(request, user)
+>             # Redirect to a success page.
+>         else:
+>             # Return a 'disabled account' error message
+>     else:
+>         # Return an 'invalid login' error message.
+
+
+### logout()
+To log out a user who has been logged in via django.contrib.auth.login(), use django.contrib.auth.logout() within your view. It takes an HttpRequest object and has no return value. Example:
+
+> from django.contrib.auth import logout
+>
+> def logout_view(request):
+>     logout(request)
+>     # Redirect to a success page.
