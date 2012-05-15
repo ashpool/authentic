@@ -58,11 +58,15 @@ mechanism recommended by NIST, as its one way hashing or password storage algori
 This should be sufficient for most users: it's quite secure, requiring massive amounts of
 computing time to break.
 
-Django stores a secret key in settings.py used as salt.
+Django stores a secret key in settings.py used as salt:
+
     #Make this unique, and don't share it with anybody.
     SECRET_KEY = 'r-7tm7riwgt9!g-z95@$%rntmli#72lh@y+1@nwu)g)q+f9#p&amp;'
 
-When applying this algorithm on "foobar" we get "pbkdf2_sha256$10000$9sr17uhNhreK$Q0MSV64ITz6+yIKk6cZhOyEm03inau5zZYhExH2B/Wk=".
+When applying this algorithm on "foobar" we get:
+
+    "pbkdf2_sha256$10000$9sr17uhNhreK$Q0MSV64ITz6+yIKk6cZhOyEm03inau5zZYhExH2B/Wk=".
+
 The prepend "pbkdf2_sha256$10000" is just a markup for the algorithm used and the number of iterations, in this case 10000.
 
 ### PBKDF2 (Password-Based Key Derivation Function)
@@ -100,7 +104,7 @@ Even a small change in the message will (with overwhelming probability) result i
 
     SHA224("The quick brown fox jumps over the lazy dog")
     0x 730e109bd7a8a32b1cb9d9a09aa2325d2430587ddbc0c38bad911525
-    
+
     SHA224("The quick brown fox jumps over the lazy dog.")
     0x 619cba8e8e05826e9b8c519c0a5c68f4fb653e8a3d8aa04bb2c8cd4c
 
