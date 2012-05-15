@@ -19,9 +19,11 @@ mechanism recommended by NIST, as its one way hashing or password storage algori
 This should be sufficient for most users: it's quite secure, requiring massive amounts of
 computing time to break.
 
-Django stores a secret key in settings.py
+Django stores a secret key in settings.py used as salt.
 > Make this unique, and don't share it with anybody.
 > SECRET_KEY = 'r-7tm7riwgt9!g-z95@$%rntmli#72lh@y+1@nwu)g)q+f9#p&amp;'
+
+When applying this algorithm on "foobar" we get "pbkdf2_sha256$10000$9sr17uhNhreK$Q0MSV64ITz6+yIKk6cZhOyEm03inau5zZYhExH2B/Wk=".
 
 ### PBKDF2 (Password-Based Key Derivation Function)
 http://en.wikipedia.org/wiki/PBKDF2
