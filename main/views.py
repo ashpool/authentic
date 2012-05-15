@@ -12,16 +12,15 @@ def home(request):
     user = request.user
     userlogins=UserLogin.objects.filter(user=user).order_by('timestamp') #filter(user = user)
 
+    userlogins = userlogins.reverse()
     if len(userlogins) > 5:
         userlogins = userlogins[:5]
 
-    userlogins.reverse()
 
     return render_to_response('index.html', {'user':user, 'userlogins': userlogins})
 
 def logout(request):
     auth.logout(request)
-    # Redirect to a success page.
     return HttpResponseRedirect("/loggedout/")
 
 def loggedout(request):
@@ -39,6 +38,7 @@ def create_user(request):
         user = form.instance
         user.set_password(user.password)
         user.save()
-
         return HttpResponseRedirect("/")
+    else:
+        return HttpResponseRedirect("/register")
 
