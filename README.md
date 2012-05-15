@@ -26,11 +26,15 @@ because installation won't work.)
 
 ### Install Django
 If you're using Linux, Mac OS X or some other flavor of Unix, enter the command
+
 > sudo pip install Django
+
 at the shell prompt.
 
 If you're using Windows, start a command shell with administrator privileges and run the command
+
 > pip install Django
+
 This will install Django in your Python installation's site-packages directory.
 
 ### Download Authentic from Github
