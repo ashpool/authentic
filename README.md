@@ -9,6 +9,45 @@ Functionality:
 * Authenticate user
 * List of 5 last successful logins (only authenticated users allowed)
 
+## Setup
+
+### Install Python
+https://docs.djangoproject.com/en/dev/topics/install/?from=olddocs
+
+Get Python at http://www.python.org. If you’re running Linux or Mac OS X,
+you probably already have it installed.
+
+### Install pip
+Install [pip](http://www.pip-installer.org/en/latest/index.html).
+The easiest is to use [the standalone pip installer](http://www.pip-installer.org/en/latest/installing.html#using-the-installer).
+If your distribution already has pip installed, you might need to
+update it if it's outdated. (If it's outdated, you'll know
+because installation won't work.)
+
+### Install Django
+If you're using Linux, Mac OS X or some other flavor of Unix, enter the command
+> sudo pip install Django
+at the shell prompt.
+
+If you're using Windows, start a command shell with administrator privileges and run the command
+> pip install Django
+This will install Django in your Python installation's site-packages directory.
+
+### Download Authentic from Github
+
+> git clone git@github.com:ashpool/authentic.git
+
+or
+
+[Download zip](https://github.com/ashpool/authentic/zipball/master)
+
+## Usage
+
+> cd authentic
+> python manage.py runserver
+
+Direct your browser to http://localhost:8000
+
 
 ## Encryption of passwords
 https://docs.djangoproject.com/en/dev/topics/auth/#how-django-stores-passwords
@@ -24,6 +63,7 @@ Django stores a secret key in settings.py used as salt.
 > SECRET_KEY = 'r-7tm7riwgt9!g-z95@$%rntmli#72lh@y+1@nwu)g)q+f9#p&amp;'
 
 When applying this algorithm on "foobar" we get "pbkdf2_sha256$10000$9sr17uhNhreK$Q0MSV64ITz6+yIKk6cZhOyEm03inau5zZYhExH2B/Wk=".
+The prepend "pbkdf2_sha256$10000" is just a markup for the algorithm used and the number of iterations, in this case 10000.
 
 ### PBKDF2 (Password-Based Key Derivation Function)
 http://en.wikipedia.org/wiki/PBKDF2
