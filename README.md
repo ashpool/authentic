@@ -145,7 +145,7 @@ Note that data set during the anonymous session is retained when the user logs i
 
 This example shows how you might use both authenticate() and login():
 
-from django.contrib.auth import authenticate, login
+    from django.contrib.auth import authenticate, login
 
     def my_view(request):
         username = request.POST['username']
