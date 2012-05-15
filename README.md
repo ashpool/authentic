@@ -65,7 +65,7 @@ Django stores a secret key in settings.py used as salt:
 
 When applying this algorithm on "foobar" we get:
 
-    "pbkdf2_sha256$10000$9sr17uhNhreK$Q0MSV64ITz6+yIKk6cZhOyEm03inau5zZYhExH2B/Wk=".
+    pbkdf2_sha256$10000$9sr17uhNhreK$Q0MSV64ITz6+yIKk6cZhOyEm03inau5zZYhExH2B/Wk=
 
 The prepend "pbkdf2_sha256$10000" is just a markup for the algorithm used and the number of iterations, in this case 10000.
 
