@@ -80,7 +80,7 @@ Laboratories' Public-Key Cryptography Standards (PKCS) series, specifically PKCS
 also published as Internet Engineering Task Force's RFC 2898. It replaces an earlier standard,
 PBKDF1, which could only produce derived keys up to 160 bits long.
 
-PBKDF2 applies a pseudorandom function, such as a cryptographic hash, cipher, or HMAC to
+PBKDF2 applies a pseudorandom function, such as a cryptographic hash, cipher, or HMAC [(Hash-based Message Authentication Code)](http://en.wikipedia.org/wiki/HMAC) to
 the input password or passphrase along with a salt value and repeats the process many
 times to produce a derived key, which can then be used as a cryptographic key in
 subsequent operations. The added computational work makes password cracking much more
