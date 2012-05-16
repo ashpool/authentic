@@ -57,7 +57,7 @@ Direct your browser to http://localhost:8000
 https://docs.djangoproject.com/en/dev/topics/auth/#how-django-stores-passwords
 
 By default, Django uses the PBKDF2 algorithm with a SHA256 hash, a password stretching
-mechanism recommended by NIST, as its one way hashing or password storage algorithms.
+mechanism recommended by NIST (National Institute of Standards and Technology), as its one way hashing or password storage algorithms.
 
 This should be sufficient for most users: it's quite secure, requiring massive amounts of
 computing time to break.
